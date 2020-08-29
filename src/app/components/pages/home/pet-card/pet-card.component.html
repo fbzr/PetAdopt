@@ -1,0 +1,11 @@
+<a href="#" [routerLink]="['/pet', pet.id]">
+  <div class="card">
+    <div class="image-container">
+      <img src="{{ pet.photos[0].medium }}" alt="Pet photo" />
+    </div>
+    <div class="text-container">
+      <h3>{{ pet.name }}</h3>
+      <p>{{ pet.description }}</p>
+    </div>
+  </div>
+</a>
