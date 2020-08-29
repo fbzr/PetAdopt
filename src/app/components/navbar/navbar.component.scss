@@ -1,0 +1,32 @@
+$primary: #f3384b;
+
+.navbar {
+  background: $primary;
+  padding: 1.2rem 0;
+
+  a {
+    color: white;
+    text-decoration: none;
+
+    &.logo {
+      font-weight: bold;
+    }
+  }
+
+  nav {
+    float: right;
+
+    ul {
+      list-style-type: none;
+      display: flex;
+
+      li a {
+        padding: 1.2rem;
+
+        &:hover {
+          background: darken($primary, 10%);
+        }
+      }
+    }
+  }
+}
