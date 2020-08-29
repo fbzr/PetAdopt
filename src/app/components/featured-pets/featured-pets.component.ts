@@ -22,6 +22,12 @@ export class FeaturedPetsComponent implements OnInit {
         id: 2,
         name: 'Buckley',
         description: 'Crazy',
+        photos: [
+          {
+            medium:
+              'https://cdn.pixabay.com/photo/2015/06/08/15/02/pug-801826_960_720.jpg',
+          },
+        ],
       },
       {
         id: 3,

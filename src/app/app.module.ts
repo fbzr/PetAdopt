@@ -8,6 +8,7 @@ import { PetCardComponent } from './components/pet-card/pet-card.component';
 import { FeaturedPetsComponent } from './components/featured-pets/featured-pets.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { AboutComponent } from './components/pages/about/about.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AboutComponent } from './components/pages/about/about.component';
     PetCardComponent,
     FeaturedPetsComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
