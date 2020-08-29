@@ -1,0 +1,39 @@
+$primary: #f3384b;
+
+section.top {
+  height: calc(100vh - 57px);
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .cta-text {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    h1 {
+      font-weight: bold;
+    }
+
+    a {
+      background: $primary;
+      color: white;
+      border-radius: 3px;
+      padding: 0.5rem 2.5rem;
+      text-decoration: none;
+
+      &:hover {
+        background: darken($color: $primary, $amount: 10%);
+      }
+    }
+  }
+}
