@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { PetCardComponent } from './components/pet-card/pet-card.component';
+import { FeaturedPetsComponent } from './components/featured-pets/featured-pets.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    PetCardComponent,
+    FeaturedPetsComponent
   ],
   imports: [
     BrowserModule,
