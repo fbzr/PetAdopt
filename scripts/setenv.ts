@@ -11,9 +11,7 @@ if (!process.env.API_URL || !process.env.API_KEY || !process.env.API_SECRET) {
   process.exit(-1);
 }
 
-const targetPath = isProduction
-  ? `./src/environments/environment.prod.ts`
-  : `./src/environments/environment.ts`;
+const targetPath = `./src/environments/environment.ts`;
 // we have access to our environment variables
 // in the process.env object thanks to dotenv
 const environmentFileContent = `
