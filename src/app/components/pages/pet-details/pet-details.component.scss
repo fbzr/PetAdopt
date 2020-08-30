@@ -1,0 +1,16 @@
+.header {
+  margin-bottom: 4rem;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+
+  .org-info {
+    padding: 3rem 0;
+  }
+
+  .primary-photo {
+    border-radius: 5px;
+    max-height: 480px;
+  }
+}
