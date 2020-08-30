@@ -1,6 +1,8 @@
-<section id="featured" class="container">
-  <h2>Featured:</h2>
-  <div class="cards-container">
-    <app-pet-card *ngFor="let pet of pets" [pet]="pet"></app-pet-card>
+<section id="featured">
+  <div class="container">
+    <h2>Featured:</h2>
+    <div class="cards-container">
+      <app-pet-card *ngFor="let pet of pets" [pet]="pet"></app-pet-card>
+    </div>
   </div>
 </section>
