@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Pet } from '../../../../models/Pet';
 import { PetService } from 'src/app/services/pet.service';
 
@@ -8,14 +8,14 @@ import { PetService } from 'src/app/services/pet.service';
   styleUrls: ['./featured-pets.component.scss'],
 })
 export class FeaturedPetsComponent implements OnInit {
-  pets: Pet[];
+  @Input() pets: Pet[];
 
   constructor(private petService: PetService) {}
 
   ngOnInit(): void {
     if (!this.pets) {
-      this.petService.getPets().subscribe((res) => {
-        this.pets = res['animals'];
+      this.petService.getPets().subscribe((data) => {
+        this.pets = data['animals'];
         console.log(this.pets);
       });
     }
