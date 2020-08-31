@@ -1,7 +1,11 @@
 <section id="featured">
   <div class="container padding-section">
     <div class="cards-container">
-      <app-pet-card *ngFor="let pet of pets" [pet]="pet"></app-pet-card>
+      <app-pet-card
+        class="pet-card"
+        *ngFor="let pet of pets"
+        [pet]="pet"
+      ></app-pet-card>
     </div>
   </div>
 </section>

@@ -10,7 +10,11 @@
   background: white;
 
   @include md {
-    width: 240px;
+    max-width: 240px;
+  }
+
+  @include sm {
+    max-width: 100%;
   }
 
   a {
