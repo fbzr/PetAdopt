@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
-$primary: #f3384b;
+@import "./assets/scss/variables.scss";
+@import "./assets/scss/mixins.scss";
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-max: 576px;
+// Small tablets (portrait view)
+$screen-md-max: 768px;
+// Tablets and small desktops
+$screen-lg-max: 992px;
+// Large tablets and desktops
+$screen-xl-max: 1200px;
+
+$test: black;
 
 :root {
   body {
@@ -38,6 +50,10 @@ $primary: #f3384b;
       margin: 0 auto;
 
       font-size: 1rem;
+
+      @include md {
+        width: 85%;
+      }
     }
 
     .padding-section {
