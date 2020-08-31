@@ -1,16 +1,40 @@
+@import "../../../../assets/scss/mixins.scss";
+
 .header {
   margin-bottom: 4rem;
 }
+
 .content {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
-  .org-info {
-    padding: 3rem 0;
+  .col {
+    max-width: 48%;
+
+    @include sm {
+      max-width: none;
+    }
+  }
+
+  .info-container {
+    @include sm {
+      order: 2;
+    }
+
+    .org-info {
+      padding: 3rem 0;
+    }
   }
 
   .primary-photo {
     border-radius: 5px;
     max-height: 480px;
+
+    @include sm {
+      margin-bottom: 1rem;
+      order: 1;
+      max-width: 100%;
+    }
   }
 }

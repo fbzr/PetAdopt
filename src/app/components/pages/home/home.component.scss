@@ -1,5 +1,6 @@
-$primary: #f3384b;
-$secondary: turquoise;
+@import "../../../../assets/scss/variables.scss";
+@import "../../../../assets/scss/mixins.scss";
+
 section.top {
   height: calc(100vh - 57px);
   position: relative;
@@ -20,13 +21,41 @@ section.top {
     justify-content: center;
     align-items: flex-start;
 
+    @include sm {
+      height: 80%;
+    }
+
     h1 {
       font-weight: bold;
       margin-bottom: 0.2rem;
+
+      @include lg {
+        max-width: 320px;
+      }
+
+      @include md {
+        max-width: 290px;
+      }
+
+      @include sm {
+        max-width: 200px;
+      }
     }
 
     .description {
       margin-bottom: 1.5rem;
+
+      @include lg {
+        max-width: 300px;
+      }
+
+      @include md {
+        max-width: 300px;
+      }
+
+      @include sm {
+        max-width: 160px;
+      }
     }
 
     a {
@@ -47,9 +76,12 @@ section.type-selection {
   .container {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+
     a {
       background: $primary;
       padding: 1rem;
+      margin: 1rem;
       text-decoration: none;
       color: white;
       border-radius: 5px;

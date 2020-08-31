@@ -1,3 +1,5 @@
+@import "../../../../../assets/scss/mixins.scss";
+
 .card {
   width: 300px;
   height: 90%;
@@ -6,6 +8,10 @@
   border-radius: 5px;
   overflow: hidden;
   background: white;
+
+  @include md {
+    width: 240px;
+  }
 
   a {
     text-decoration: none;
@@ -28,9 +34,11 @@
       .name {
         padding: 12px 12px 0 12px;
       }
+
       .location {
         padding: 0 12px 12px 12px;
       }
+
       .description {
         padding: 0 12px 12px;
       }
