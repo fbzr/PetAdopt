@@ -91,12 +91,9 @@ section.type-selection {
       justify-content: space-around;
       align-items: center;
       width: 200px;
-      max-width: 30%;
 
       @include md {
         flex-direction: column;
-        max-width: 30%;
-        width: auto;
       }
 
       @include sm {
