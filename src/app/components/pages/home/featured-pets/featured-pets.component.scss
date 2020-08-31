@@ -12,5 +12,9 @@
     @include sm {
       justify-content: center;
     }
+
+    .pet-card {
+      max-width: 100%;
+    }
   }
 }

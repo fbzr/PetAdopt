@@ -73,15 +73,17 @@ section.top {
 }
 
 section.type-selection {
-  .container {
+  .links-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    position: relative;
+    width: 100%;
 
     a {
       background: $primary;
       padding: 1rem;
-      margin: 1rem;
+      margin: 1rem 0;
       text-decoration: none;
       color: white;
       border-radius: 5px;
@@ -89,19 +91,39 @@ section.type-selection {
       justify-content: space-around;
       align-items: center;
       width: 200px;
+      max-width: 30%;
+
+      @include md {
+        flex-direction: column;
+        max-width: 30%;
+        width: auto;
+      }
+
+      @include sm {
+        padding: 0.8rem;
+      }
 
       &:hover {
         background: darken($color: $primary, $amount: 10%);
       }
 
       img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+
+        @include sm {
+          width: 60px;
+          height: auto;
+        }
       }
 
       h2 {
         font-weight: bold;
+
+        @include sm {
+          font-size: 1.4rem;
+        }
       }
     }
   }
