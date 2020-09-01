@@ -22,7 +22,7 @@ export class PetService {
       return true;
     }
 
-    for (let key in keys) {
+    for (let key of keys) {
       if (this.filters[key] !== filters[key]) {
         return true;
       }
@@ -49,6 +49,7 @@ export class PetService {
       this.data = this.http.get(reqUrl, {
         headers: { ['Authorization']: `Bearer ${this.token}` },
       });
+
       return this.data;
     }
 
