@@ -2,11 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
 
-:construction: Work in progress.
-
 > https://petadopt.netlify.app/
 
 Application fetches and displays data from [PetFinder API](https://www.petfinder.com/developers/v2/docs/).
+
+:construction: Work in progress :construction:
 
 <!-- ## Development server
 
