@@ -3,4 +3,27 @@
 footer {
   background: $primary;
   color: white;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .icons-container {
+      display: flex;
+      justify-content: center;
+
+      a {
+        margin: 0.7rem;
+      }
+    }
+  }
 }
