@@ -15,6 +15,7 @@ import { PetService } from './services/pet.service';
 import { InitService } from './services/init.service';
 import { DogsComponent } from './components/pages/dogs/dogs.component';
 import { CatsComponent } from './components/pages/cats/cats.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { CatsComponent } from './components/pages/cats/cats.component';
     DogsComponent,
     CatsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FontAwesomeModule],
   providers: [
     PetService,
     InitService,
