@@ -8,11 +8,12 @@ import { environment } from '../../environments/environment';
 })
 export class PetService {
   readonly token: string = localStorage.getItem('token');
-  readonly URL: string = `${environment.API_URL}/animals?limit=21`;
+  readonly URL: string = `${environment.API_URL}/animals`;
 
   filters: Object;
   data: Observable<Object>;
 
+  // TODO: see if I can initialize http to have default headers with the token
   constructor(private http: HttpClient) {}
 
   private isNewRequest(filters: Object): Boolean {
@@ -31,13 +32,13 @@ export class PetService {
     return false;
   }
 
-  getPets(filters: Object = {}) {
+  getPets(filters: Object = {}): Observable<Object> {
     // check if it needs to make a new request (no data or different query params)
     if (!this.data || this.isNewRequest(filters)) {
       // update filters property
       this.filters = filters;
 
-      let reqUrl = this.URL;
+      let reqUrl = this.URL + '?limit=21';
       const pairs = Object.entries(filters);
 
       // add query params to url to make request
@@ -54,5 +55,11 @@ export class PetService {
     }
 
     return this.data;
+  }
+
+  getPet(id: number): Observable<Object> {
+    return this.http.get(`${this.URL}/${id}`, {
+      headers: { ['Authorization']: `Bearer ${this.token}` },
+    });
   }
 }
