@@ -31,6 +31,7 @@ export class FeaturedPetsComponent implements OnInit {
             });
         },
         (error) => {
+          console.log(error);
           this.petService.getPets(this.filter).subscribe((data) => {
             this.pets = data['animals'];
           });
