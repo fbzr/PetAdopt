@@ -15,7 +15,7 @@ export class LocationService {
             observer.next(position);
             observer.complete();
           },
-          (error) => observer.error(error)
+          (error) => observer.error(error.message)
         );
       } else {
         observer.error('Unsupported Browser');
