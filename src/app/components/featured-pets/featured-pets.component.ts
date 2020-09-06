@@ -10,6 +10,7 @@ import { LocationService } from 'src/app/services/location.service';
 })
 export class FeaturedPetsComponent implements OnInit {
   @Input() pets: Pet[];
+  @Input() filter: Object = {};
 
   constructor(
     private petService: PetService,
@@ -21,13 +22,16 @@ export class FeaturedPetsComponent implements OnInit {
       this.locationService.getCoords().subscribe(
         (location) => {
           this.petService
-            .getPets({ location: `${location.latitude},${location.longitude}` })
+            .getPets({
+              ...this.filter,
+              location: `${location.latitude},${location.longitude}`,
+            })
             .subscribe((data) => {
               this.pets = data['animals'];
             });
         },
         (error) => {
-          this.petService.getPets().subscribe((data) => {
+          this.petService.getPets(this.filter).subscribe((data) => {
             this.pets = data['animals'];
           });
         }
