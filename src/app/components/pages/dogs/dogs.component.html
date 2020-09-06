@@ -4,4 +4,4 @@
     <h1>Dog<br />Adoption</h1>
   </div>
 </section>
-<app-featured-pets *ngIf="dogs" [pets]="dogs"></app-featured-pets>
+<app-featured-pets [filter]="{ type: 'Dog' }"></app-featured-pets>
