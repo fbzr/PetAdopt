@@ -7,12 +7,15 @@ import { Observable } from 'rxjs';
 export class LocationService {
   constructor() {}
 
-  getLocation(): Observable<any> {
+  getCoords(): Observable<any> {
     return new Observable((observer) => {
       if (window.navigator && window.navigator.geolocation) {
         window.navigator.geolocation.getCurrentPosition(
           (position) => {
-            observer.next(position);
+            observer.next({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            });
             observer.complete();
           },
           (error) => observer.error(error.message)

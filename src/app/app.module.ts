@@ -12,6 +12,7 @@ import { AboutComponent } from './components/pages/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PetDetailsComponent } from './components/pages/pet-details/pet-details.component';
 import { PetService } from './services/pet.service';
+import { LocationService } from './services/location.service';
 import { InitService } from './services/init.service';
 import { DogsComponent } from './components/pages/dogs/dogs.component';
 import { CatsComponent } from './components/pages/cats/cats.component';
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   providers: [
     PetService,
+    LocationService,
     InitService,
     {
       provide: APP_INITIALIZER,

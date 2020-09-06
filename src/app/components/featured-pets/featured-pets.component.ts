@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Pet } from '../../models/Pet';
 import { PetService } from 'src/app/services/pet.service';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'app-featured-pets',
@@ -10,14 +11,27 @@ import { PetService } from 'src/app/services/pet.service';
 export class FeaturedPetsComponent implements OnInit {
   @Input() pets: Pet[];
 
-  constructor(private petService: PetService) {}
+  constructor(
+    private petService: PetService,
+    private locationService: LocationService
+  ) {}
 
   ngOnInit(): void {
     if (!this.pets) {
-      this.petService.getPets().subscribe((data) => {
-        this.pets = data['animals'];
-        console.log(this.pets);
-      });
+      this.locationService.getCoords().subscribe(
+        (location) => {
+          this.petService
+            .getPets({ location: `${location.latitude},${location.longitude}` })
+            .subscribe((data) => {
+              this.pets = data['animals'];
+            });
+        },
+        (error) => {
+          this.petService.getPets().subscribe((data) => {
+            this.pets = data['animals'];
+          });
+        }
+      );
     }
   }
 }
