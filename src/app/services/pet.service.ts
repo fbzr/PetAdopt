@@ -62,4 +62,11 @@ export class PetService {
       headers: { ['Authorization']: `Bearer ${this.token}` },
     });
   }
+
+  changePage(link: string): Observable<Object> {
+    const url = this.URL.split('/v2')[0] + link;
+    return this.http.get(url, {
+      headers: { ['Authorization']: `Bearer ${this.token}` },
+    });
+  }
 }

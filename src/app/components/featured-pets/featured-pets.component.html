@@ -7,5 +7,10 @@
         [pet]="pet"
       ></app-pet-card>
     </div>
+    <app-pagination
+      (updateDataEvent)="updatePets($event)"
+      *ngIf="pagination"
+      [data]="pagination"
+    ></app-pagination>
   </div>
 </section>
