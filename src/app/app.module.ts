@@ -17,6 +17,7 @@ import { InitService } from './services/init.service';
 import { DogsComponent } from './components/pages/dogs/dogs.component';
 import { CatsComponent } from './components/pages/cats/cats.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PetDetailsComponent,
     DogsComponent,
     CatsComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,28 @@
+@import "../../../assets/scss/variables.scss";
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .link {
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
+    border-radius: 3px;
+    transition: 200ms background, color;
+
+    &:hover {
+      background: $primary;
+      color: white;
+    }
+
+    &.current-page {
+      border-bottom: $primary 3px solid;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      font-weight: bold;
+    }
+  }
+}

@@ -11,6 +11,7 @@ import { LocationService } from 'src/app/services/location.service';
 export class FeaturedPetsComponent implements OnInit {
   @Input() pets: Pet[];
   @Input() filter: Object = {};
+  pagination: Object;
 
   constructor(
     private petService: PetService,
@@ -28,17 +29,22 @@ export class FeaturedPetsComponent implements OnInit {
             })
             .subscribe((data) => {
               this.pets = data['animals'];
-              console.log(this.pets);
+              this.pagination = data['pagination'];
             });
         },
         (error) => {
           console.log(error);
           this.petService.getPets(this.filter).subscribe((data) => {
             this.pets = data['animals'];
-            console.log(this.pets);
+            this.pagination = data['pagination'];
           });
         }
       );
     }
+  }
+
+  updatePets(data: Object): void {
+    this.pets = data['animals'];
+    this.pagination = data['pagination'];
   }
 }

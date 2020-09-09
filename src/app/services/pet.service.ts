@@ -62,4 +62,22 @@ export class PetService {
       headers: { ['Authorization']: `Bearer ${this.token}` },
     });
   }
+
+  changePage(link: string): Observable<Object> {
+    const url = this.URL.split('/v2')[0] + link;
+    return this.http.get(url, {
+      headers: { ['Authorization']: `Bearer ${this.token}` },
+    });
+  }
+
+  changePageByPageNumber(link: string, page: number): Observable<Object> {
+    const url =
+      this.URL.split('/v2')[0] + link.split('&page=')[0] + `&page=${page}`;
+    // const url = this.URL.split('&page=')[0] + `&page=${page}`;
+    console.log('page number service', url);
+    console.log('link', link);
+    return this.http.get(url, {
+      headers: { ['Authorization']: `Bearer ${this.token}` },
+    });
+  }
 }
