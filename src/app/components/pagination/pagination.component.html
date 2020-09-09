@@ -1,7 +1,19 @@
-<div>
-  {{ data["current_page"] }}
-  <button (click)="handleNext()">test</button>
-  <a (click)="handlePrev()">Prev</a>
-  <a (click)="handleNext()">Next</a>
-  <pre>{{ data | json }}</pre>
+<div class="pagination">
+  <a class="link" href="#featured" (click)="handlePrev()">Prev</a>
+
+  <div class="numbered-pages" *ngIf="pages">
+    <a
+      *ngFor="let page of pages"
+      class="link"
+      [class.current-page]="page === data['current_page']"
+      ngClass="{page: 'current-page'}[data['current_page']]"
+      href="#featured"
+      (click)="handlePageNumber(page)"
+      >{{ page }}</a
+    >
+  </div>
+
+  <a class="link" href="#featured" (click)="handleNext()">Next</a>
+
+  <!-- <pre>{{ data | json }}</pre> -->
 </div>
