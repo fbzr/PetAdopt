@@ -6,7 +6,6 @@
       *ngFor="let page of pages"
       class="link"
       [class.current-page]="page === data['current_page']"
-      ngClass="{page: 'current-page'}[data['current_page']]"
       href="#featured"
       (click)="handlePageNumber(page)"
       >{{ page }}</a
