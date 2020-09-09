@@ -28,11 +28,14 @@ export class FeaturedPetsComponent implements OnInit {
             })
             .subscribe((data) => {
               this.pets = data['animals'];
+              console.log(this.pets);
             });
         },
         (error) => {
+          console.log(error);
           this.petService.getPets(this.filter).subscribe((data) => {
             this.pets = data['animals'];
+            console.log(this.pets);
           });
         }
       );
