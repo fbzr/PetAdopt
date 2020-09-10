@@ -63,21 +63,22 @@ export class PetService {
     });
   }
 
-  changePage(link: string): Observable<Object> {
-    const url = this.URL.split('/v2')[0] + link;
-    return this.http.get(url, {
-      headers: { ['Authorization']: `Bearer ${this.token}` },
-    });
-  }
+  changePage(page: number): Observable<Object> {
+    let reqUrl = this.URL + '?limit=21';
+    const pairs = Object.entries(this.filters);
 
-  changePageByPageNumber(link: string, page: number): Observable<Object> {
-    const url =
-      this.URL.split('/v2')[0] + link.split('&page=')[0] + `&page=${page}`;
-    // const url = this.URL.split('&page=')[0] + `&page=${page}`;
-    console.log('page number service', url);
-    console.log('link', link);
-    return this.http.get(url, {
+    // add query params to url to make request
+    for (const [key, value] of pairs) {
+      reqUrl += `&${key}=${value}`;
+    }
+
+    reqUrl += `&page=${page}`;
+
+    console.log('Fetching data');
+    this.data = this.http.get(reqUrl, {
       headers: { ['Authorization']: `Bearer ${this.token}` },
     });
+
+    return this.data;
   }
 }

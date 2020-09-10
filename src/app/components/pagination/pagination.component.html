@@ -2,7 +2,6 @@
   <a
     class="link"
     [class.disabled]="data['current_page'] === 1"
-    href="#featured"
     (click)="data['current_page'] > 1 && handlePrev()"
     >Prev</a
   >
@@ -12,7 +11,6 @@
       *ngFor="let page of pages"
       class="link"
       [class.current-page]="page === data['current_page']"
-      href="#featured"
       (click)="handlePageNumber(page)"
       >{{ page }}</a
     >
@@ -21,7 +19,6 @@
   <a
     class="link"
     [class.disabled]="data['current_page'] === data['total_pages']"
-    href="#featured"
     (click)="data['current_page'] < data['total_pages'] && handleNext()"
     >Next</a
   >
