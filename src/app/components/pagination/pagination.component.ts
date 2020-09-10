@@ -42,32 +42,30 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   handleNext() {
-    console.log(this.data);
-    this.petService
-      .changePage(this.data?._links?.next?.href)
-      .subscribe((data) => {
-        console.log('data next', data);
-        this.updateDataEvent.emit(data);
-      });
+    if (this.data?.current_page < this.data?.total_pages) {
+      this.petService
+        .changePage(this.data.current_page + 1)
+        .subscribe((data) => {
+          console.log('data next', data);
+          this.updateDataEvent.emit(data);
+        });
+    }
   }
 
   handlePrev() {
-    this.petService
-      .changePage(this.data?._links?.previous?.href)
-      .subscribe((data) => {
-        this.updateDataEvent.emit(data);
-      });
+    if (this.data?.current_page > 1) {
+      this.petService
+        .changePage(this.data?.current_page - 1)
+        .subscribe((data) => {
+          this.updateDataEvent.emit(data);
+        });
+    }
   }
 
   handlePageNumber(page: number) {
-    const next = this.data?._links?.next?.href;
-    const previous = this.data?._links?.previous?.href;
-
-    this.petService
-      .changePageByPageNumber(next ? next : previous, page)
-      .subscribe((data) => {
-        this.updateDataEvent.emit(data);
-      });
+    this.petService.changePage(page).subscribe((data) => {
+      this.updateDataEvent.emit(data);
+    });
   }
 
   ngOnInit(): void {
