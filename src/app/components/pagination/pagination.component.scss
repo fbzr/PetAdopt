@@ -24,5 +24,15 @@
       border-bottom-left-radius: 0;
       font-weight: bold;
     }
+
+    &.disabled {
+      color: #999;
+
+      &:hover {
+        background: none;
+        color: none;
+        cursor: default;
+      }
+    }
   }
 }
