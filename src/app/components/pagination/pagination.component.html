@@ -1,32 +1,27 @@
 <div class="pagination">
-  <button
+  <a
     class="link"
     [class.disabled]="data['current_page'] === 1"
-    href="#featured"
     (click)="data['current_page'] > 1 && handlePrev()"
+    >Prev</a
   >
-    Prev
-  </button>
 
   <div class="numbered-pages" *ngIf="pages">
-    <button
+    <a
       *ngFor="let page of pages"
       class="link"
       [class.current-page]="page === data['current_page']"
       (click)="handlePageNumber(page)"
+      >{{ page }}</a
     >
-      {{ page }}
-    </button>
   </div>
 
-  <button
+  <a
     class="link"
     [class.disabled]="data['current_page'] === data['total_pages']"
-    href="./#featured"
     (click)="data['current_page'] < data['total_pages'] && handleNext()"
+    >Next</a
   >
-    Next
-  </button>
 
   <!-- <pre>{{ data | json }}</pre> -->
 </div>

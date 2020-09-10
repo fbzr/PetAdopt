@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Pet } from '../../models/Pet';
 import { PetService } from 'src/app/services/pet.service';
 import { LocationService } from 'src/app/services/location.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-featured-pets',
@@ -15,7 +16,8 @@ export class FeaturedPetsComponent implements OnInit {
 
   constructor(
     private petService: PetService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -46,5 +48,6 @@ export class FeaturedPetsComponent implements OnInit {
   updatePets(data: Object): void {
     this.pets = data['animals'];
     this.pagination = data['pagination'];
+    this.viewportScroller.scrollToAnchor('featured');
   }
 }

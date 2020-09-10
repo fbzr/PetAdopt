@@ -7,9 +7,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { Pet } from 'src/app/models/Pet';
 import { PetService } from 'src/app/services/pet.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pagination',
