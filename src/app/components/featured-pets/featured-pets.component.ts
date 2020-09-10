@@ -3,6 +3,8 @@ import { Pet } from '../../models/Pet';
 import { PetService } from 'src/app/services/pet.service';
 import { LocationService } from 'src/app/services/location.service';
 import { ViewportScroller } from '@angular/common';
+import { Observable } from 'rxjs';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-featured-pets',
@@ -13,6 +15,8 @@ export class FeaturedPetsComponent implements OnInit {
   @Input() pets: Pet[];
   @Input() filter: Object = {};
   pagination: Object;
+  loading: Boolean = false;
+  faSpinner = faSpinner;
 
   constructor(
     private petService: PetService,
@@ -22,6 +26,7 @@ export class FeaturedPetsComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.pets) {
+      this.loading = true;
       this.locationService.getCoords().subscribe(
         (location) => {
           this.petService
@@ -32,6 +37,7 @@ export class FeaturedPetsComponent implements OnInit {
             .subscribe((data) => {
               this.pets = data['animals'];
               this.pagination = data['pagination'];
+              this.loading = false;
             });
         },
         (error) => {
@@ -39,15 +45,21 @@ export class FeaturedPetsComponent implements OnInit {
           this.petService.getPets(this.filter).subscribe((data) => {
             this.pets = data['animals'];
             this.pagination = data['pagination'];
+            this.loading = false;
           });
         }
       );
     }
   }
 
-  updatePets(data: Object): void {
-    this.pets = data['animals'];
-    this.pagination = data['pagination'];
+  updatePets(observable: Observable<Object>): void {
+    this.loading = true;
     this.viewportScroller.scrollToAnchor('featured');
+
+    observable.subscribe((data) => {
+      this.pets = data['animals'];
+      this.pagination = data['pagination'];
+      this.loading = false;
+    });
   }
 }

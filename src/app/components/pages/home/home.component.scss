@@ -2,7 +2,7 @@
 @import "../../../../assets/scss/mixins.scss";
 
 section.top {
-  height: calc(100vh - 57px);
+  height: $full-height;
   position: relative;
 
   img {
