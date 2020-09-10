@@ -8,6 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { PetService } from 'src/app/services/pet.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pagination',
@@ -16,7 +17,7 @@ import { PetService } from 'src/app/services/pet.service';
 })
 export class PaginationComponent implements OnInit, OnChanges {
   @Input() data;
-  @Output() updateDataEvent = new EventEmitter<Object>();
+  @Output() updateDataEvent = new EventEmitter<Observable<Object>>();
   pages: number[];
 
   constructor(private petService: PetService) {}
@@ -41,33 +42,25 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   handleNext() {
     if (this.data?.current_page < this.data?.total_pages) {
-      this.petService
-        .changePage(this.data.current_page + 1)
-        .subscribe((data) => {
-          console.log('data next', data);
-          this.updateDataEvent.emit(data);
-        });
+      this.updateDataEvent.emit(
+        this.petService.changePage(this.data?.current_page + 1)
+      );
     }
   }
 
   handlePrev() {
     if (this.data?.current_page > 1) {
-      this.petService
-        .changePage(this.data?.current_page - 1)
-        .subscribe((data) => {
-          this.updateDataEvent.emit(data);
-        });
+      this.updateDataEvent.emit(
+        this.petService.changePage(this.data?.current_page - 1)
+      );
     }
   }
 
   handlePageNumber(page: number) {
-    this.petService.changePage(page).subscribe((data) => {
-      this.updateDataEvent.emit(data);
-    });
+    this.updateDataEvent.emit(this.petService.changePage(page));
   }
 
   ngOnInit(): void {
-    console.log('data', this.data);
     this.pages = this.getPagination(this.data['current_page']);
   }
 

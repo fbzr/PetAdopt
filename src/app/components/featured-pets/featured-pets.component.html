@@ -1,11 +1,14 @@
 <section id="featured">
   <div class="container padding-section">
-    <div class="cards-container">
+    <div *ngIf="!loading" class="cards-container">
       <app-pet-card
         class="pet-card"
         *ngFor="let pet of pets"
         [pet]="pet"
       ></app-pet-card>
+    </div>
+    <div class="loading" *ngIf="loading">
+      <fa-icon [icon]="faSpinner" [spin]="true" size="2x"></fa-icon>
     </div>
     <app-pagination
       (updateDataEvent)="updatePets($event)"
