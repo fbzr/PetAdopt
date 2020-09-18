@@ -9,6 +9,7 @@ import Fuse from 'fuse.js';
 export class SearchComponent implements OnInit {
   public fuse: any;
   public value: string;
+  public searchData: Object[];
 
   constructor() {}
 
@@ -30,10 +31,29 @@ export class SearchComponent implements OnInit {
       keys: ['title', 'author.firstName'],
     };
 
-    this.fuse = new Fuse([], options);
+    this.fuse = new Fuse(
+      [
+        {
+          title: 'The Adventures of Buckley',
+          author: {
+            firstName: 'Fabricio',
+            lastName: 'Bezerra',
+          },
+        },
+        {
+          title: 'Hendrix Cooking Lessons',
+          author: {
+            firstName: 'Danielle',
+            lastName: 'Judge',
+          },
+        },
+      ],
+      options
+    );
   }
 
   onKey(value: string) {
     this.value = value;
+    this.searchData = this.fuse.search(this.value);
   }
 }
