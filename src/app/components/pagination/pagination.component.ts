@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { PetService } from 'src/app/services/pet.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -20,7 +21,7 @@ export class PaginationComponent implements OnInit, OnChanges {
   @Output() updateDataEvent = new EventEmitter<Observable<Object>>();
   pages: number[];
 
-  constructor(private petService: PetService) {}
+  constructor(private petService: PetService, private router: Router) {}
 
   getPagination(currentPage: number) {
     let count: number = 0;
@@ -57,11 +58,14 @@ export class PaginationComponent implements OnInit, OnChanges {
   }
 
   handlePageNumber(page: number) {
-    this.updateDataEvent.emit(this.petService.changePage(page));
+    // this.updateDataEvent.emit(this.petService.changePage(page));
+
+    this.router.navigate([this.router.url], { queryParams: { page } });
   }
 
   ngOnInit(): void {
     this.pages = this.getPagination(this.data['current_page']);
+    console.log(this.router.url);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
