@@ -59,8 +59,10 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   handlePageNumber(page: number) {
     // this.updateDataEvent.emit(this.petService.changePage(page));
-
-    this.router.navigate([this.router.url], { queryParams: { page } });
+    const url = this.router.url.split('?')[0];
+    this.router.navigate([url], {
+      queryParams: { page },
+    });
   }
 
   ngOnInit(): void {

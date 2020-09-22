@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Pet } from '../../models/Pet';
 import { PetService } from 'src/app/services/pet.service';
 import { LocationService } from 'src/app/services/location.service';
@@ -21,13 +22,26 @@ export class FeaturedPetsComponent implements OnInit {
   constructor(
     private petService: PetService,
     private locationService: LocationService,
-    private viewportScroller: ViewportScroller
-  ) {}
+    private viewportScroller: ViewportScroller,
+    private route: ActivatedRoute
+  ) {
+    console.log('CONSTRUCTORRRR');
+    // force route reload whenever params change;
+  }
 
   ngOnInit(): void {
-    if (!this.pets) {
+    this.route.queryParamMap.subscribe((routeParams) => {
+      const page = routeParams.get('page') || 1;
+
+      console.log('page', page);
+
+      this.filter = { ...this.filter, page };
+
       this.loading = true;
+
+      // request location and handles success and error (user not allowing location access)
       this.locationService.getCoords().subscribe(
+        // success
         (location) => {
           this.petService
             .getPets({
@@ -40,6 +54,7 @@ export class FeaturedPetsComponent implements OnInit {
               this.loading = false;
             });
         },
+        // error
         (error) => {
           console.log(error);
           this.petService.getPets(this.filter).subscribe((data) => {
@@ -49,7 +64,11 @@ export class FeaturedPetsComponent implements OnInit {
           });
         }
       );
-    }
+    });
+
+    // if (!this.pets) {
+
+    // }
   }
 
   updatePets(observable: Observable<Object>): void {
