@@ -18,6 +18,7 @@ import { DogsComponent } from './components/pages/dogs/dogs.component';
 import { CatsComponent } from './components/pages/cats/cats.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     DogsComponent,
     CatsComponent,
     PaginationComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

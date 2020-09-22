@@ -32,6 +32,10 @@ export class PetService {
     return false;
   }
 
+  getCurrentPets(): Observable<Object> {
+    return this.data;
+  }
+
   getPets(filters: Object = {}): Observable<Object> {
     // check if it needs to make a new request (no data or different query params)
     if (!this.data || this.isNewRequest(filters)) {
