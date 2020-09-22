@@ -24,10 +24,7 @@ export class FeaturedPetsComponent implements OnInit {
     private locationService: LocationService,
     private viewportScroller: ViewportScroller,
     private route: ActivatedRoute
-  ) {
-    console.log('CONSTRUCTORRRR');
-    // force route reload whenever params change;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((routeParams) => {
