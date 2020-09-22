@@ -33,10 +33,8 @@ export class FeaturedPetsComponent implements OnInit {
     this.route.queryParamMap.subscribe((routeParams) => {
       const page = routeParams.get('page') || 1;
 
-      console.log('page', page);
-
+      // update filter with pages from query params
       this.filter = { ...this.filter, page };
-
       this.loading = true;
 
       // request location and handles success and error (user not allowing location access)
@@ -65,20 +63,16 @@ export class FeaturedPetsComponent implements OnInit {
         }
       );
     });
-
-    // if (!this.pets) {
-
-    // }
   }
 
-  updatePets(observable: Observable<Object>): void {
-    this.loading = true;
-    this.viewportScroller.scrollToAnchor('featured');
+  // updatePets(observable: Observable<Object>): void {
+  //   this.loading = true;
+  //   this.viewportScroller.scrollToAnchor('featured');
 
-    observable.subscribe((data) => {
-      this.pets = data['animals'];
-      this.pagination = data['pagination'];
-      this.loading = false;
-    });
-  }
+  //   observable.subscribe((data) => {
+  //     this.pets = data['animals'];
+  //     this.pagination = data['pagination'];
+  //     this.loading = false;
+  //   });
+  // }
 }

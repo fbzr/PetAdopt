@@ -18,7 +18,6 @@ import { Router } from '@angular/router';
 })
 export class PaginationComponent implements OnInit, OnChanges {
   @Input() data;
-  @Output() updateDataEvent = new EventEmitter<Observable<Object>>();
   pages: number[];
 
   constructor(private petService: PetService, private router: Router) {}
@@ -43,17 +42,13 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   handleNext() {
     if (this.data?.current_page < this.data?.total_pages) {
-      this.updateDataEvent.emit(
-        this.petService.changePage(this.data?.current_page + 1)
-      );
+      this.handlePageNumber(this.data.current_page + 1);
     }
   }
 
   handlePrev() {
     if (this.data?.current_page > 1) {
-      this.updateDataEvent.emit(
-        this.petService.changePage(this.data?.current_page - 1)
-      );
+      this.handlePageNumber(this.data.current_page - 1);
     }
   }
 
@@ -67,7 +62,6 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.pages = this.getPagination(this.data['current_page']);
-    console.log(this.router.url);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

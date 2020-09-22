@@ -10,10 +10,6 @@
     <div class="loading" *ngIf="loading">
       <fa-icon [icon]="faSpinner" [spin]="true" size="2x"></fa-icon>
     </div>
-    <app-pagination
-      (updateDataEvent)="updatePets($event)"
-      *ngIf="pagination"
-      [data]="pagination"
-    ></app-pagination>
+    <app-pagination *ngIf="pagination" [data]="pagination"></app-pagination>
   </div>
 </section>
