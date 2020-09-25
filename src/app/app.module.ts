@@ -22,6 +22,7 @@ import { SearchComponent } from './components/search/search.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { AutocompleteInputComponent } from './components/autocomplete-input/autocomplete-input.component';
 import { FormsModule } from '@angular/forms';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FormsModule } from '@angular/forms';
     PaginationComponent,
     SearchComponent,
     AutocompleteInputComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,

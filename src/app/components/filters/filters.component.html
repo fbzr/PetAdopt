@@ -1,0 +1,7 @@
+<div>
+  {{ filter | json }}
+  <label for="cityInput">City: </label>
+  <app-autocomplete-input
+    (setLocation)="getLocation($event)"
+  ></app-autocomplete-input>
+</div>

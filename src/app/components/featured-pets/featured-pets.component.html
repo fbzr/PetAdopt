@@ -1,8 +1,5 @@
 <section id="featured">
-  <app-autocomplete-input
-    (setAddress)="getAddress($event)"
-  ></app-autocomplete-input>
-  <pre>{{ address | json }}</pre>
+  <app-filters (setFilter)="update($event)"></app-filters>
   <div class="container padding-section">
     <div *ngIf="!loading" class="cards-container">
       <app-pet-card

@@ -18,7 +18,6 @@ export class FeaturedPetsComponent implements OnInit {
   pagination: Object;
   loading: Boolean = false;
   faSpinner = faSpinner;
-  address: Object;
 
   constructor(
     private petService: PetService,
@@ -63,7 +62,16 @@ export class FeaturedPetsComponent implements OnInit {
     });
   }
 
-  getAddress(place: object) {
-    this.address = place['formatted_address'];
+  update(filter: Object): void {
+    this.filter = filter;
+    this.petService
+      .getPets({
+        ...this.filter,
+      })
+      .subscribe((data) => {
+        this.pets = data['animals'];
+        this.pagination = data['pagination'];
+        this.loading = false;
+      });
   }
 }

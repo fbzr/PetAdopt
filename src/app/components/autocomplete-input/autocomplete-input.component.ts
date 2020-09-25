@@ -14,7 +14,7 @@ import {
 })
 export class AutocompleteInputComponent implements OnInit, AfterViewInit {
   @ViewChild('cityText') cityText: any;
-  @Output() setAddress: EventEmitter<any> = new EventEmitter();
+  @Output() setLocation: EventEmitter<any> = new EventEmitter();
   autocompleteInput: string;
 
   constructor() {}
@@ -36,12 +36,18 @@ export class AutocompleteInputComponent implements OnInit, AfterViewInit {
 
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       const place = autocomplete.getPlace();
-      this.invokeEvent(place);
-    });
-  }
 
-  invokeEvent(place: Object) {
-    this.setAddress.emit(place);
-    console.log('selected', place);
+      // types: ["locality", "political"] is City
+      // types: ["administrative_area_level_1", "political"] is State
+      const [city] = place['address_components']
+        .filter((el) => el['types'][0] === 'locality')
+        .map((el) => el['long_name']);
+
+      const [state] = place['address_components']
+        .filter((el) => el['types'][0] === 'administrative_area_level_1')
+        .map((el) => el['short_name']);
+
+      this.setLocation.emit(`${city}, ${state}`);
+    });
   }
 }
