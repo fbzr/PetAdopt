@@ -5,21 +5,35 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LocationService {
+  latitude: Object;
+  longitude: Object;
+
+  constructor() {}
+
   getCoords(): Observable<any> {
     return new Observable((observer) => {
-      if (window.navigator && window.navigator.geolocation) {
-        window.navigator.geolocation.getCurrentPosition(
-          (position) => {
-            observer.next({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            });
-            observer.complete();
-          },
-          (error) => observer.error(error.message)
-        );
+      if (!this.latitude || !this.longitude) {
+        if (window.navigator && window.navigator.geolocation) {
+          window.navigator.geolocation.getCurrentPosition(
+            (position) => {
+              this.latitude = position.coords.latitude;
+              this.longitude = position.coords.longitude;
+              observer.next({
+                latitude: this.latitude,
+                longitude: this.longitude,
+              });
+              observer.complete();
+            },
+            (error) => observer.error(error.message)
+          );
+        } else {
+          observer.error('Unsupported Browser');
+        }
       } else {
-        observer.error('Unsupported Browser');
+        observer.next({
+          latitude: this.latitude,
+          longitude: this.longitude,
+        });
       }
     });
   }
