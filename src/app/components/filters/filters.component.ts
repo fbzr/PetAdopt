@@ -14,6 +14,6 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {}
 
   getLocation(location: string) {
-    this.setFilter.emit({ ...this.filter, location });
+    this.setFilter.emit({ ...this.filter, location, page: 1 });
   }
 }
