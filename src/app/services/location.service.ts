@@ -5,8 +5,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LocationService {
-  constructor() {}
-
   getCoords(): Observable<any> {
     return new Observable((observer) => {
       if (window.navigator && window.navigator.geolocation) {

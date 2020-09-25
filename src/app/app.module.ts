@@ -20,6 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchComponent } from './components/search/search.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { AutocompleteInputComponent } from './components/autocomplete-input/autocomplete-input.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     CatsComponent,
     PaginationComponent,
     SearchComponent,
+    AutocompleteInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     HttpClientModule,
     FontAwesomeModule,
     GoogleMapsModule,
+    FormsModule,
   ],
   providers: [
     PetService,
