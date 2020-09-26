@@ -1,7 +1,20 @@
 <div>
   {{ filter | json }}
-  <label for="cityInput">City: </label>
+  <label for="cityInput">Location: </label>
   <app-autocomplete-input
-    (setLocation)="getLocation($event)"
+    (setLocation)="handleLocation($event)"
   ></app-autocomplete-input>
+
+  <label for="types">Type: </label>
+  <select
+    id="types"
+    #animalType
+    (change)="handleTypeSelect(animalType.value)"
+    *ngIf="types"
+  >
+    <option value="">All</option>
+    <option *ngFor="let type of types" [value]="type.value">
+      {{ type.name }}
+    </option>
+  </select>
 </div>

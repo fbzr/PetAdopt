@@ -85,4 +85,12 @@ export class PetService {
 
     return this.data;
   }
+
+  getPetTypes(): Observable<Object> {
+    const url = environment.API_URL + '/types';
+
+    return this.http.get(url, {
+      headers: { ['Authorization']: `Bearer ${this.token}` },
+    });
+  }
 }

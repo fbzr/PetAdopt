@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LocationService {
-  latitude: Object;
-  longitude: Object;
+  latitude: number;
+  longitude: number;
 
   constructor() {}
 
