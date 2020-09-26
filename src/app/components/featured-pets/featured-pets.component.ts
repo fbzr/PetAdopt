@@ -58,15 +58,13 @@ export class FeaturedPetsComponent implements OnInit {
   }
 
   update(filter: Object): void {
+    console.log('update');
+    this.loading = true;
     this.filter = filter;
-    this.petService
-      .getPets({
-        ...this.filter,
-      })
-      .subscribe((data) => {
-        this.pets = data['animals'];
-        this.pagination = data['pagination'];
-        this.loading = false;
-      });
+    this.petService.getPets(this.filter).subscribe((data) => {
+      this.pets = data['animals'];
+      this.pagination = data['pagination'];
+      this.loading = false;
+    });
   }
 }

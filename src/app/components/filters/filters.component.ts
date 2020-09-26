@@ -27,22 +27,29 @@ export class FiltersComponent implements OnInit {
   }
 
   handleLocation(location: string) {
-    this.setFilter.emit({ ...this.filter, location, page: 1 });
+    this.addFilter('location', location);
   }
 
-  handleTypeSelect(value) {
-    console.log(value);
+  handleTypeSelect(value: string) {
     if (value) {
-      this.setFilter.emit({ ...this.filter, type: value });
+      this.addFilter('type', value);
     } else {
-      this.setFilter.emit(
-        Object.keys(this.filter)
-          .filter((filter) => filter !== 'type')
-          .reduce((result, current) => {
-            result[current] = this.filter[current];
-            return result;
-          }, {})
-      );
+      this.removeFilter('type');
     }
+  }
+
+  private addFilter(property: string, value: any): void {
+    this.setFilter.emit({ ...this.filter, page: 1, [property]: value });
+  }
+
+  private removeFilter(property: string): void {
+    this.setFilter.emit(
+      Object.keys(this.filter)
+        .filter((filter) => filter !== property)
+        .reduce((result, current) => {
+          result[current] = this.filter[current];
+          return result;
+        }, {})
+    );
   }
 }

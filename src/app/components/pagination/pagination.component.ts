@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 export class PaginationComponent implements OnInit, OnChanges {
   @Input() data;
   pages: number[];
+  loading: boolean;
 
   constructor(private petService: PetService, private router: Router) {}
 
@@ -69,11 +70,16 @@ export class PaginationComponent implements OnInit, OnChanges {
     //Add '${implements OnChanges}' to the class.
 
     // get previous and updated current_page and compare them
+    const { currentValue, previousValue } = changes.data;
 
-    const current_page = changes.data.currentValue?.current_page;
-    const previous_page = changes.data.previousValue?.current_page;
+    const current_page = currentValue?.current_page;
+    const previous_page = previousValue?.current_page;
+
+    const current_total = currentValue?.total_pages;
+    const previous_total = previousValue?.total_pages;
+
     // update pages if values are different
-    if (current_page !== previous_page) {
+    if (current_page !== previous_page || current_total !== previous_total) {
       this.pages = this.getPagination(current_page);
     }
   }
