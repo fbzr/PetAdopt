@@ -10,7 +10,18 @@ export class LocationService {
 
   constructor() {}
 
-  getCoords(): Observable<any> {
+  getCoords(): { latitude: number; longitude: number } {
+    if (!this.latitude || !this.longitude) {
+      return null;
+    }
+
+    return {
+      latitude: this.latitude,
+      longitude: this.longitude,
+    };
+  }
+
+  requestCoords(): Observable<any> {
     return new Observable((observer) => {
       if (!this.latitude || !this.longitude) {
         if (window.navigator && window.navigator.geolocation) {

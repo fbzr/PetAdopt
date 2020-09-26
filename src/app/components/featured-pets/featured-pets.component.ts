@@ -35,19 +35,14 @@ export class FeaturedPetsComponent implements OnInit {
       this.loading = true;
 
       // request location and handles success and error (user not allowing location access)
-      this.locationService.getCoords().subscribe(
+      this.locationService.requestCoords().subscribe(
         // success
         (location) => {
-          this.petService
-            .getPets({
-              ...this.filter,
-              location: `${location.latitude},${location.longitude}`,
-            })
-            .subscribe((data) => {
-              this.pets = data['animals'];
-              this.pagination = data['pagination'];
-              this.loading = false;
-            });
+          this.petService.getPets(this.filter).subscribe((data) => {
+            this.pets = data['animals'];
+            this.pagination = data['pagination'];
+            this.loading = false;
+          });
         },
         // error
         (error) => {
