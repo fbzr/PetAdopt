@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PetService } from 'src/app/services/pet.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
@@ -14,7 +14,7 @@ export class FiltersComponent implements OnInit {
     value: string;
   }[];
 
-  constructor(private petService: PetService) {}
+  constructor(private petService: PetService, private router: Router) {}
 
   ngOnInit(): void {
     this.petService.getPetTypes().subscribe((data) => {
@@ -23,6 +23,13 @@ export class FiltersComponent implements OnInit {
         value: type['_links']['self']['href'].split('/').slice(-1)[0],
       }));
     });
+  }
+
+  isSpecificTypePage(): boolean {
+    // check if current page is dogs page or cats page
+    // hide type filter if it is
+    const page = this.router.url.split('/')[1].split('?')[0];
+    return page.includes('dogs') || page.includes('cats');
   }
 
   handleFilter(property: string, value: string): void {
