@@ -23,31 +23,33 @@ export class FeaturedPetsComponent implements OnInit {
     private petService: PetService,
     private locationService: LocationService,
     private viewportScroller: ViewportScroller,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((routeParams) => {
-      const page = routeParams.get('page') || 1;
+      let page = routeParams.get('page');
+
+      if (page) {
+        this.viewportScroller.scrollToAnchor('featured');
+      } else {
+        page = '1';
+      }
 
       // update filter with pages from query params
       this.filter = { ...this.filter, page };
       this.loading = true;
 
       // request location and handles success and error (user not allowing location access)
-      this.locationService.getCoords().subscribe(
+      this.locationService.requestCoords().subscribe(
         // success
         (location) => {
-          this.petService
-            .getPets({
-              ...this.filter,
-              location: `${location.latitude},${location.longitude}`,
-            })
-            .subscribe((data) => {
-              this.pets = data['animals'];
-              this.pagination = data['pagination'];
-              this.loading = false;
-            });
+          this.petService.getPets(this.filter).subscribe((data) => {
+            this.pets = data['animals'];
+            this.pagination = data['pagination'];
+            this.loading = false;
+          });
         },
         // error
         (error) => {
@@ -62,14 +64,14 @@ export class FeaturedPetsComponent implements OnInit {
     });
   }
 
-  // updatePets(observable: Observable<Object>): void {
-  //   this.loading = true;
-  //   this.viewportScroller.scrollToAnchor('featured');
+  update(filter: Object): void {
+    this.loading = true;
+    this.filter = filter;
 
-  //   observable.subscribe((data) => {
-  //     this.pets = data['animals'];
-  //     this.pagination = data['pagination'];
-  //     this.loading = false;
-  //   });
-  // }
+    this.petService.getPets(this.filter).subscribe((data) => {
+      this.pets = data['animals'];
+      this.pagination = data['pagination'];
+      this.loading = false;
+    });
+  }
 }

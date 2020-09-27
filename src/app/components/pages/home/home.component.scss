@@ -58,12 +58,14 @@ section.top {
       }
     }
 
-    a {
+    .button {
       background: $primary;
       color: white;
       border-radius: 3px;
+      border: none;
       padding: 0.5rem 2.5rem;
       text-decoration: none;
+      cursor: pointer;
 
       &:hover {
         background: darken($color: $primary, $amount: 10%);

@@ -1,5 +1,6 @@
 <section id="featured">
   <div class="container padding-section">
+    <app-filters (setFilter)="update($event)" [filter]="filter"></app-filters>
     <div *ngIf="!loading" class="cards-container">
       <app-pet-card
         class="pet-card"

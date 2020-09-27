@@ -19,6 +19,10 @@ import { CatsComponent } from './components/pages/cats/cats.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearchComponent } from './components/search/search.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { AutocompleteInputComponent } from './components/autocomplete-input/autocomplete-input.component';
+import { FormsModule } from '@angular/forms';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +38,16 @@ import { SearchComponent } from './components/search/search.component';
     CatsComponent,
     PaginationComponent,
     SearchComponent,
+    AutocompleteInputComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    GoogleMapsModule,
+    FormsModule,
   ],
   providers: [
     PetService,

@@ -21,7 +21,8 @@ export const environment = {
    production: ${isProduction},
    API_URL: "${process.env.API_URL}",
    API_KEY: "${process.env.API_KEY}",
-   API_SECRET: "${process.env.API_SECRET}"
+   API_SECRET: "${process.env.API_SECRET}",
+   GOOGLE_API_KEY: "${process.env.GOOGLE_API_KEY}",
 };
 `;
 // write the content to the respective file

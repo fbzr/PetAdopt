@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { LocationService } from './location.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,10 @@ export class PetService {
   data: Observable<Object>;
 
   // TODO: see if I can initialize http to have default headers with the token
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private locationService: LocationService
+  ) {}
 
   private isNewRequest(filters: Object): Boolean {
     const keys = Object.keys(this.filters);
@@ -42,13 +46,28 @@ export class PetService {
       // update filters property
       this.filters = filters;
 
+      // check if new filter has location
+      // if it doesn't, check if user gave permission to access user's location
+      if (!this.filters['location']) {
+        const coords = this.locationService.getCoords();
+        if (coords) {
+          this.filters = {
+            ...this.filters,
+            location: `${coords.latitude},${coords.longitude}`,
+          };
+        }
+      }
+
       let reqUrl = this.URL + '?limit=21';
-      const pairs = Object.entries(filters);
+      const pairs = Object.entries(this.filters);
 
       // add query params to url to make request
       for (const [key, value] of pairs) {
         reqUrl += `&${key}=${value}`;
       }
+
+      console.log('fetch url', reqUrl);
+      console.log('filters', this.filters);
 
       console.log('Fetching data');
       this.data = this.http.get(reqUrl, {
@@ -84,5 +103,13 @@ export class PetService {
     });
 
     return this.data;
+  }
+
+  getPetTypes(): Observable<Object> {
+    const url = environment.API_URL + '/types';
+
+    return this.http.get(url, {
+      headers: { ['Authorization']: `Bearer ${this.token}` },
+    });
   }
 }
