@@ -41,17 +41,21 @@ export class FiltersComponent implements OnInit {
   }
 
   private addFilter(property: string, value: any): void {
-    this.setFilter.emit({ ...this.filter, page: 1, [property]: value });
+    if (this.filter[property] !== value) {
+      this.setFilter.emit({ ...this.filter, page: 1, [property]: value });
+    }
   }
 
   private removeFilter(property: string): void {
-    this.setFilter.emit(
-      Object.keys(this.filter)
-        .filter((filter) => filter !== property)
-        .reduce((result, current) => {
-          result[current] = this.filter[current];
-          return result;
-        }, {})
-    );
+    if (this.filter[property]) {
+      this.setFilter.emit(
+        Object.keys(this.filter)
+          .filter((filter) => filter !== property)
+          .reduce((result, current) => {
+            result[current] = this.filter[current];
+            return result;
+          }, {})
+      );
+    }
   }
 }

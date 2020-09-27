@@ -23,12 +23,19 @@ export class FeaturedPetsComponent implements OnInit {
     private petService: PetService,
     private locationService: LocationService,
     private viewportScroller: ViewportScroller,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((routeParams) => {
-      const page = routeParams.get('page') || 1;
+      let page = routeParams.get('page');
+
+      if (page) {
+        this.viewportScroller.scrollToAnchor('featured');
+      } else {
+        page = '1';
+      }
 
       // update filter with pages from query params
       this.filter = { ...this.filter, page };
@@ -58,9 +65,9 @@ export class FeaturedPetsComponent implements OnInit {
   }
 
   update(filter: Object): void {
-    console.log('update');
     this.loading = true;
     this.filter = filter;
+
     this.petService.getPets(this.filter).subscribe((data) => {
       this.pets = data['animals'];
       this.pagination = data['pagination'];

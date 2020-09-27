@@ -41,20 +41,19 @@ export class PaginationComponent implements OnInit, OnChanges {
     return pages;
   }
 
-  handleNext() {
+  handleNext(): void {
     if (this.data?.current_page < this.data?.total_pages) {
       this.handlePageNumber(this.data.current_page + 1);
     }
   }
 
-  handlePrev() {
+  handlePrev(): void {
     if (this.data?.current_page > 1) {
       this.handlePageNumber(this.data.current_page - 1);
     }
   }
 
-  handlePageNumber(page: number) {
-    // this.updateDataEvent.emit(this.petService.changePage(page));
+  handlePageNumber(page: number): void {
     const url = this.router.url.split('?')[0];
     this.router.navigate([url], {
       queryParams: { page },
