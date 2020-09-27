@@ -1,20 +1,35 @@
 <div>
+  <h2>Filters</h2>
   <!-- {{ filter | json }} -->
-  <label for="cityInput">Location: </label>
-  <app-autocomplete-input
-    (setLocation)="handleLocation($event)"
-  ></app-autocomplete-input>
+  <div>
+    <!-- name -->
+    <label for="nameInput">Name: </label>
+    <input
+      id="nameInput"
+      #nameInput
+      type="text"
+      (blur)="handleFilter('name', nameInput.value)"
+      (keyup.enter)="handleFilter('name', nameInput.value)"
+    />
 
-  <label for="types">Type: </label>
-  <select
-    id="types"
-    #animalType
-    (change)="handleTypeSelect(animalType.value)"
-    *ngIf="types"
-  >
-    <option value="">All</option>
-    <option *ngFor="let type of types" [value]="type.value">
-      {{ type.name }}
-    </option>
-  </select>
+    <!-- location -->
+    <label for="cityInput">Location: </label>
+    <app-autocomplete-input
+      (setLocation)="handleFilter('location', $event)"
+    ></app-autocomplete-input>
+
+    <!-- Type -->
+    <label for="types">Type: </label>
+    <select
+      id="types"
+      #animalType
+      (change)="handleFilter('type', animalType.value)"
+      *ngIf="types"
+    >
+      <option value="">All</option>
+      <option *ngFor="let type of types" [value]="type.value">
+        {{ type.name }}
+      </option>
+    </select>
+  </div>
 </div>

@@ -18,7 +18,6 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.petService.getPetTypes().subscribe((data) => {
-      console.log(data);
       this.types = data['types'].map((type) => ({
         name: type['name'],
         value: type['_links']['self']['href'].split('/').slice(-1)[0],
@@ -26,15 +25,11 @@ export class FiltersComponent implements OnInit {
     });
   }
 
-  handleLocation(location: string) {
-    this.addFilter('location', location);
-  }
-
-  handleTypeSelect(value: string) {
+  handleFilter(property: string, value: string): void {
     if (value) {
-      this.addFilter('type', value);
+      this.addFilter(property, value);
     } else {
-      this.removeFilter('type');
+      this.removeFilter(property);
     }
   }
 

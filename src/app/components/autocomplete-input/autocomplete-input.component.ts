@@ -37,6 +37,8 @@ export class AutocompleteInputComponent implements OnInit, AfterViewInit {
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       const place = autocomplete.getPlace();
 
+      // TODO: handle invalid input value
+
       // types: ["locality", "political"] is City
       // types: ["administrative_area_level_1", "political"] is State
       const [city] = place['address_components']
