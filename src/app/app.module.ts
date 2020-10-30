@@ -23,6 +23,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { AutocompleteInputComponent } from './components/autocomplete-input/autocomplete-input.component';
 import { FormsModule } from '@angular/forms';
 import { FiltersComponent } from './components/filters/filters.component';
+import { GraphQLModule } from './graphql.module';
+import { LoginComponent } from './components/pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     SearchComponent,
     AutocompleteInputComponent,
     FiltersComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     FontAwesomeModule,
     GoogleMapsModule,
     FormsModule,
+    GraphQLModule,
   ],
   providers: [
     PetService,
