@@ -23,6 +23,7 @@ export const environment = {
    API_KEY: "${process.env.API_KEY}",
    API_SECRET: "${process.env.API_SECRET}",
    GOOGLE_API_KEY: "${process.env.GOOGLE_API_KEY}",
+   PETADOPT_API: "${process.env.PETADOPT_API}",
 };
 `;
 // write the content to the respective file

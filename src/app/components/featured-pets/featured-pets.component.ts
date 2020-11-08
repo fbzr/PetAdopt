@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Pet } from '../../models/Pet';
 import { PetService } from 'src/app/services/pet.service';
 import { LocationService } from 'src/app/services/location.service';
 import { ViewportScroller } from '@angular/common';
-import { Observable } from 'rxjs';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -23,8 +22,7 @@ export class FeaturedPetsComponent implements OnInit {
     private petService: PetService,
     private locationService: LocationService,
     private viewportScroller: ViewportScroller,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
