@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Apollo, gql } from 'apollo-angular';
 
 const GET_USER = gql`
   query GetUser {
     user {
-      id
       name
-      email
     }
   }
 `;
@@ -15,10 +14,12 @@ const GET_USER = gql`
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title: string = 'PetAdopt';
   loading: boolean = true;
   user;
+
+  private querySubscription: Subscription;
 
   constructor(private apollo: Apollo) {
     console.log('app constructor');
@@ -27,9 +28,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     console.log('app init');
     try {
-      this.apollo
+      this.querySubscription = this.apollo
         .watchQuery<any>({
           query: GET_USER,
+          errorPolicy: 'all',
         })
         .valueChanges.subscribe(({ data, loading }) => {
           this.loading = loading;
@@ -37,7 +39,13 @@ export class AppComponent implements OnInit {
           console.log('set user with user data:\n', data.user);
         });
     } catch (error) {
-      console.log('error\n', error.message);
+      this.loading = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.querySubscription.unsubscribe();
   }
 }
