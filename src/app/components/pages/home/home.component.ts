@@ -2,11 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 
 import { Subscription } from 'rxjs';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 const GET_USER = gql`
-  query user {
-    name
+  query GetUser {
+    user {
+      name
+    }
   }
 `;
 
@@ -31,6 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.querySubscription = this.apollo
       .watchQuery<any>({
         query: GET_USER,
+        errorPolicy: 'all',
       })
       .valueChanges.subscribe(({ data, loading }) => {
         this.loading = loading;
