@@ -10,7 +10,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
     link: httpLink.create({
       uri,
-      withCredentials: true,
+      withCredentials: false,
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
         .set('Authorization', 'application/json'),
