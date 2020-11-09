@@ -31,20 +31,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    try {
-      this.querySubscription = this.apollo
-        .watchQuery<any>({
-          query: GET_USER,
-          errorPolicy: 'all',
-        })
-        .valueChanges.subscribe(({ data, loading }) => {
-          this.loading = loading;
-          this.user = data.user;
-          console.log('set user with user data:\n', data.user);
-        });
-    } catch (error) {
-      this.loading = false;
-    }
+    this.querySubscription = this.apollo
+      .watchQuery<any>({
+        query: GET_USER,
+        errorPolicy: 'all',
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        this.loading = loading;
+        this.user = data.user;
+        console.log('set user with user data:\n', data.user);
+      });
   }
 
   ngOnDestroy(): void {
