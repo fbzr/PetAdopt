@@ -12,6 +12,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
       uri,
       withCredentials: true,
     }),
+    credentials: 'include',
     cache: new InMemoryCache(),
   };
 }
