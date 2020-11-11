@@ -3,7 +3,6 @@ import { APOLLO_OPTIONS } from 'apollo-angular';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { environment } from '../environments/environment';
-import { HttpHeaders } from '@angular/common/http';
 
 const uri = `${environment.PETADOPT_API}/graphql`; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -14,6 +13,9 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     }),
     credentials: 'include',
     cache: new InMemoryCache(),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
 }
 
