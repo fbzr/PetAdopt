@@ -13,9 +13,9 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     }),
     credentials: 'include',
     cache: new InMemoryCache(),
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
+    // headers: {
+    //   'Content-Type': 'application/x-www-form-urlencoded',
+    // },
   };
 }
 
