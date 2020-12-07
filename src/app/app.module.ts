@@ -8,7 +8,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PetCardComponent } from './components/pet-card/pet-card.component';
 import { FeaturedPetsComponent } from './components/featured-pets/featured-pets.component';
 import { HomeComponent } from './components/pages/home/home.component';
-import { AboutComponent } from './components/pages/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PetDetailsComponent } from './components/pages/pet-details/pet-details.component';
 import { PetService } from './services/pet.service';
@@ -33,7 +32,6 @@ import { LoginComponent } from './components/pages/login/login.component';
     PetCardComponent,
     FeaturedPetsComponent,
     HomeComponent,
-    AboutComponent,
     FooterComponent,
     PetDetailsComponent,
     DogsComponent,
